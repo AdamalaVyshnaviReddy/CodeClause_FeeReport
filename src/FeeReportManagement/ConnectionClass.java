@@ -1,4 +1,4 @@
-package feeReportManagement;
+package FeeReportManagement;
 
 import java.sql.*;
 
@@ -11,8 +11,8 @@ public class ConnectionClass
   {
       try
       {
-          Class.forName("com.mysql.cj.jdbc.Driver");
-          Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/fee","root","vyshu");
+          Class.forName("com.mysql.jdbc.Driver");
+          Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/FeeReport","root","vyshu");
           Statement stm=con.createStatement();
           if(con.isClosed())
           {

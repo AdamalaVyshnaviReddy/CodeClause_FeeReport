@@ -1,4 +1,4 @@
-package feeReportManagement;
+package FeeReportManagement;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -65,16 +65,17 @@ public class Admin extends JFrame implements ActionListener
     }
     public void actionPerformed(ActionEvent e)
     {
-     String name=tf.getText();
+     String username=tf.getText();
      String password=pf.getText();
      
      if(e.getSource()==bt1)
      {
         try
         {
-          ConnectionClass obj=new ConnectionClass();
+          Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/FeeReport","root","vyshu");
+          Statement stm=con.createStatement();
           String q="select * from admin";
-          ResultSet rest= obj.stm.executeQuery(q);
+          ResultSet rest =stm.executeQuery(q);
           if(rest.next())
           {
               System.out.println("You are login");
@@ -100,6 +101,10 @@ public class Admin extends JFrame implements ActionListener
     public static void main(String[] args)
     {
         new Index().setVisible(true);
+    }
+
+    private Object ConnectionClass() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

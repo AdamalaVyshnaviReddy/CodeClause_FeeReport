@@ -1,4 +1,4 @@
-package feeReportManagement;
+package FeeReportManagement;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -21,9 +21,10 @@ Font f;
     
     try
     {
-      ConnectionClass obj=new ConnectionClass();
+          Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/FeeReport","root","vyshu");
+          Statement stm=con.createStatement();
           String q="select * from add_student";
-          ResultSet rest= obj.stm.executeQuery(q);  
+          ResultSet rest=stm.executeQuery(q);  
           while(rest.next())
           {
               y[i][j++]=rest.getString("rollno");

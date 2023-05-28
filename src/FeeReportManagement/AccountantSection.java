@@ -1,4 +1,4 @@
-package feeReportManagement;
+package FeeReportManagement;
 
 import java.awt.event.*;
 import java.awt.*;

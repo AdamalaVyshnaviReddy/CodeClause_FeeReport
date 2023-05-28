@@ -1,4 +1,4 @@
-package feeReportManagement;
+package FeeReportManagement;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -95,9 +95,10 @@ public class AddAccountant extends JFrame implements ActionListener
      
             try
             {
-                 ConnectionClass obj=new ConnectionClass();
+                 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/FeeReport","root","vyshu");
+                 Statement stm=con.createStatement();
                  String q="insert into accountant(Name,Password,Email,Contact,Address) value('"+Name+"','"+Password+"','"+Email+"','"+Contact+"','"+Address+"')";
-                 int a=obj.stm.executeUpdate(q);
+                 int a=stm.executeUpdate(q);
                  if(a==1)
                  {
                     JOptionPane.showMessageDialog(null, "your data is successfully Inserted");

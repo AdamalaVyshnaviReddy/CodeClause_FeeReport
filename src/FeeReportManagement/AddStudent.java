@@ -1,4 +1,4 @@
-package feeReportManagement;
+package FeeReportManagement;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -126,7 +126,7 @@ public class AddStudent extends JFrame implements ActionListener
     String Name=tf1.getText();
     String Email=tf2.getText();
     String Course=tf3.getText();
-    Float Fee= Float.parseFloat(tf5.getText());
+    Float Fee= Float.parseFloat(tf4.getText());
     Float Paid=Float.parseFloat(tf5.getText());
     Float Due=Float.parseFloat(tf6.getText());
     String Address=tf7.getText();
@@ -139,9 +139,10 @@ public class AddStudent extends JFrame implements ActionListener
     {
         try
         {
-           ConnectionClass obj=new ConnectionClass();
+           Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/FeeReport","root","vyshu");
+          Statement stm=con.createStatement();
            String q="insert into add_student(name,email,course,fee,paid,due,address,city,state,country,contact) values('"+Name+"','"+Email+"','"+Course+"','"+Fee+"','"+Paid+"','"+Due+"','"+Address+"','"+City+"','"+State+"','"+Country+"','"+ContactNo+"')";
-           int aa=obj.stm.executeUpdate(q);
+           int aa=stm.executeUpdate(q);
            if(aa==1)
            {
                JOptionPane.showMessageDialog(null, "your data is successfully Inserted");

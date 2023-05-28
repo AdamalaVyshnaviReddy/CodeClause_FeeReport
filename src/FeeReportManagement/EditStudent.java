@@ -1,4 +1,4 @@
-package feeReportManagement;
+package FeeReportManagement;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -28,9 +28,10 @@ public class EditStudent extends JFrame implements ActionListener
        
        try
        {
-           ConnectionClass obj=new ConnectionClass();
+           Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/FeeReport","root","vyshu");
+           Statement stm=con.createStatement();
            String q="select rollno from add_student";
-           ResultSet rest=obj.stm.executeQuery(q);
+           ResultSet rest=stm.executeQuery(q);
            while(rest.next())
            {
                ch.add(rest.getString("rollno"));
@@ -54,7 +55,7 @@ public class EditStudent extends JFrame implements ActionListener
         l10=new JLabel("City");
         l11=new JLabel("State");
         l12=new JLabel("Country");
-        l13=new JLabel("Contact No");
+        l13=new JLabel("ContactNo");
         
         l1.setHorizontalAlignment(JLabel.CENTER);
         l1.setForeground(Color.BLUE);
@@ -148,23 +149,24 @@ public class EditStudent extends JFrame implements ActionListener
             {
                 try
                 {
-                   ConnectionClass obj1=new ConnectionClass();
+                   Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/FeeReport","root","vyshu");
+                   Statement stm=con.createStatement();
                    int rn=Integer.parseInt(ch.getSelectedItem());
                    String q1="select * from add_student where rollno= '"+rn+"'";
-                   ResultSet rest1=obj1.stm.executeQuery(q1);
+                   ResultSet rest1=stm.executeQuery(q1);
                    while(rest1.next())
                    {
-                       tf1.setText(rest1.getString("Name"));
-                       tf2.setText(rest1.getString("Email"));
-                       tf3.setText(rest1.getString("Course"));
-                       tf4.setText(rest1.getString("Fee"));
-                       tf5.setText(rest1.getString("Paid"));
-                       tf6.setText(rest1.getString("Due"));
-                       tf7.setText(rest1.getString("Address"));
-                       tf8.setText(rest1.getString("City"));
-                       tf9.setText(rest1.getString("State"));
-                       tf10.setText(rest1.getString("Country"));
-                       tf11.setText(rest1.getString("Contact No"));
+                       tf1.setText(rest1.getString("name"));
+                       tf2.setText(rest1.getString("email"));
+                       tf3.setText(rest1.getString("course"));
+                       tf4.setText(rest1.getString("fee"));
+                       tf5.setText(rest1.getString("paid"));
+                       tf6.setText(rest1.getString("due"));
+                       tf7.setText(rest1.getString("address"));
+                       tf8.setText(rest1.getString("city"));
+                       tf9.setText(rest1.getString("state"));
+                       tf10.setText(rest1.getString("country"));
+                       tf11.setText(rest1.getString("contact"));
                        
                        
                    }
@@ -183,7 +185,7 @@ public class EditStudent extends JFrame implements ActionListener
             String Name=tf1.getText();
             String Email=tf2.getText();
             String Course=tf3.getText();
-            Float Fee= Float.parseFloat(tf5.getText());
+            Float Fee= Float.parseFloat(tf4.getText());
             Float Paid=Float.parseFloat(tf5.getText());
             Float Due=Float.parseFloat(tf6.getText());
             String Address=tf7.getText();
@@ -196,10 +198,10 @@ public class EditStudent extends JFrame implements ActionListener
             {
                try
                {
-                    ConnectionClass obj2=new ConnectionClass();
-                   String Contact;
-                    String q="update add_student set (name='"+Name+"',email='"+Email+"',course='"+Course+"',fee='"+Fee+"',paid='"+Paid+"',due='"+Due+"',address='"+Address+"',city='"+City+"',state='"+State+"',country='"+Country+"',contact='"+ContactNo+"' where rollno='"+Rollno+"')";  
-                    int aa=obj2.stm.executeUpdate(q);
+                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/FeeReport","root","vyshu");
+                    Statement stm=con.createStatement();
+                    String q="update add_student set name='"+Name+"',email='"+Email+"',course='"+Course+"',fee='"+Fee+"',paid='"+Paid+"',due='"+Due+"',address='"+Address+"',city='"+City+"',state='"+State+"',country='"+Country+"',contact='"+ContactNo+"' where rollno='"+Rollno+"'";  
+                    int aa=stm.executeUpdate(q);
                     if(aa==1)
                     {
                        JOptionPane.showMessageDialog(null, "your data is successfully Updated");
